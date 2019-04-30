@@ -1,0 +1,18 @@
+{
+  "ServiceBus": {
+    "TransportUserName": "Ri/3iQUAxaIKZKzmH94ejQ==",
+    "TransportPassword": "ct/CHs/yya1PwyaiCTtNIg==",
+    "TransportHostName": "HjQdwPUT2OAnJK5R1bhApw==",
+    "TransportConnectionString": "WMKTzkSIB79T3fM7nWWxWGDEpJCCQpTm+Rawv77dh/g5/yT25Rt0Dfneo4oBAVtq2NYA5PlvxCdv+q/1eDxfX9MKgG4H415NwkNJG/T6RGU=",
+    "DatabaseConnectionString": "DWUBf+GDWyDmhS3ZxxOIzpRvd4J3ixkJEorEcRkrvsQzsl58MZ968sIwEaNownOPWEzfhUwDT5O1rkLBYJ+Ea4ccMzgK4iYfvI/M65iAuN1QMcpmINlzVk5UwxY4aUOa8zLlbdVB+DBGbAa4h4QvGOEs240EybnH70WUCA0JzYklFs2EUd98GeVxcV/cEbTGeYWTIfrJ5Y5mDqd5KTrOqL6zieBt5cHbH8BC52Jcm7ixcNuaotiEaYQIDxpXxa9cJ29Ha5Mr+/jqiOEEZTap31tstXuzlOxII7+se57gG04="
+  },
+  "MarsRoverContext": {
+    "EndpointName": "2TduCwnuNJsseBTdxk4ZiA==",
+    "ErrorQueueName": "SKuGj4FwdVBIar+eLzqvIQ==",
+    "DatabaseConnectionString": "DWUBf+GDWyDmhS3ZxxOIzpRvd4J3ixkJEorEcRkrvsQzsl58MZ968sIwEaNownOPYo++fd+ho0NWD8br8WZFUhk9shRWkkQ9crbcWGhfOfi117issIDLvYDhP5R4ciSg8QfqXs3W1oeLJ4zeZuNJ9Mh1PRKmwgyA9Cdi/FtSkEmdYAvcepeg2FVFaO7Nw1ZHjrvC5KBbR1lAliyGVU8y9/Iz9fJo4oYaNdbPvim9I1lqGTr2MxqEVRvWTDhxyvrc156heSaDKsa4ePAM+Pk9ow=="
+  },
+  "Nasa": {
+    "EndpointName": "+mAbNzR6cvbobxtJRD6bfA==",
+    "ErrorQueueName": "7lcU8Dcp/e3HPhi/DsJg0g=="
+  }
+}

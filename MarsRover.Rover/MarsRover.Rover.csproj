@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarsRover.Contracts\MarsRover.Contracts.csproj" />
+    <ProjectReference Include="..\MarsRover.Shared\MarsRover.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="7.1.7" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="5.1.1" />
+  </ItemGroup>
+
+</Project>
