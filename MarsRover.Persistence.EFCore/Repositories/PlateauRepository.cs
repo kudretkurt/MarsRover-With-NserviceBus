@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using PersistencePlateau = MarsRover.Persistence.EFCore.Entities.Plateau;
+using PersistenceRover = MarsRover.Persistence.EFCore.Entities.Rover;
 
 namespace MarsRover.Persistence.EFCore.Repositories
 {
@@ -35,7 +36,7 @@ namespace MarsRover.Persistence.EFCore.Repositories
         {
             var persistencePlateau = _context.Plateaus.Include(t => t.Rovers).First(t => t.Id == plateau.Id);
             persistencePlateau.Size = new Size(plateau.Size.Width, plateau.Size.Height);
-
+            persistencePlateau.Rovers = plateau.Rovers.Select(Mapper.Map<Rover.Domain.Rover, PersistenceRover>).ToList();
             return await _context.SaveChangesAsync();
         }
     }

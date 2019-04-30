@@ -16,25 +16,7 @@ namespace MarsRover.Rover.Handlers
             var rover = RoverRepository.GetRover(
                 Guid.Parse(EncryptionUtils.Instance.Decrypt(message.EncryptedRoverId)));
 
-            var moveCommands = EncryptionUtils.Instance.Decrypt(message.EncryptedMoveCommand).ToCharArray();
-
-            foreach (var moveCommand in moveCommands)
-            {
-                switch (moveCommand)
-                {
-                    case 'L':
-                        rover.TurnLeft();
-                        break;
-                    case 'R':
-                        rover.TurnRight();
-                        break;
-                    case 'M':
-                        rover.Move();
-                        break;
-                    default:
-                        throw new Exception("UnExpected command");
-                }
-            }
+            rover.ApplyMoveCommand(message.EncryptedMoveCommand);
 
             RoverRepository.UpdateRover(rover);
 

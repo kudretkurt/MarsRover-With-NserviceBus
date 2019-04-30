@@ -42,6 +42,7 @@ namespace MarsRover.Rover.Domain
         public abstract void TurnLeft();
         public abstract void TurnRight();
         public abstract void Move();
+        public abstract void ApplyMoveCommand(string encryptedMoveCommands);
         public void SetDirection(Direction direction)
         {
             Direction = direction;

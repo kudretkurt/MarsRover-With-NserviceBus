@@ -2,6 +2,7 @@
 using MarsRover.Shared;
 using MarsRover.Shared.Enums;
 using System;
+using MarsRover.Shared.Utilities;
 
 namespace MarsRover.Rover.Domain
 {
@@ -11,7 +12,6 @@ namespace MarsRover.Rover.Domain
         public RoverX(Direction direction, Point point, Guid roverId) : base(direction, point, roverId)
         {
         }
-
         public RoverX()
         {
 
@@ -95,6 +95,28 @@ namespace MarsRover.Rover.Domain
                     break;
                 default:
                     throw new InvalidOperationException();
+            }
+        }
+        public override void ApplyMoveCommand(string encryptedMoveCommands)
+        {
+            var moveCommands = EncryptionUtils.Instance.Decrypt(encryptedMoveCommands).ToCharArray();
+
+            foreach (var moveCommand in moveCommands)
+            {
+                switch (moveCommand)
+                {
+                    case 'L':
+                        TurnLeft();
+                        break;
+                    case 'R':
+                        TurnRight();
+                        break;
+                    case 'M':
+                        Move();
+                        break;
+                    default:
+                        throw new Exception("UnExpected command");
+                }
             }
         }
     }

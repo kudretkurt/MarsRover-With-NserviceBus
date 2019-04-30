@@ -9,7 +9,7 @@ namespace MarsRover.Rover.Domain
     {
         public Size Size { get; }
         public string Name { get; }
-        public IReadOnlyCollection<Rover> Rovers { get; }
+        public IReadOnlyCollection<Rover> Rovers { get; private set; }
         protected LandBase(Size size, string name, Guid id = default)
         {
             if (id != default)
@@ -37,7 +37,9 @@ namespace MarsRover.Rover.Domain
                 throw new Exception("Platoya göndermek istediğiniz aracın x ve y koordinatlarında başka bir uzay aracı bulunmaktadır.Bu yüzden lütfen ilgili aracın başlangıç koordinatlarını değiştiriniz");
             }
 
-            Rovers.ToList().Add(rover);
+            var rovers = Rovers.ToList();
+            rovers.Add(rover);
+            Rovers = new List<Rover>(rovers).AsReadOnly();
         }
     }
 }

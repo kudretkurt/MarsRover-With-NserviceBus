@@ -5,6 +5,7 @@ using MarsRover.Shared.Enums;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Xunit;
 
 namespace MarsRover.Tests
@@ -54,6 +55,45 @@ namespace MarsRover.Tests
             await _fixture.RoverRepository.UpdateRover(rover);
 
             Assert.Throws<LockException>(() => rover.Move());
+        }
+
+        [Fact]
+        [Trait("RoverRepositoryTests", "InsertRover")]
+        public async Task Insert_Plateau()
+        {
+            var plateauId = Guid.NewGuid();
+            await _fixture.PlateauRepository.SavePlateau(new Plateau(new Size(5, 5), "PlateauX", plateauId));
+            var plateau = _fixture.PlateauRepository.GetPlateau(plateauId);
+            var roverId = Guid.NewGuid();
+
+            var insertedRoverX = new RoverX(Direction.East, new Point(1, 1), roverId);
+            insertedRoverX.SendToPlateau(plateau);
+            await _fixture.RoverRepository.SaveRover(insertedRoverX);
+
+            var rover = _fixture.RoverRepository.GetRover(roverId);
+            plateau = _fixture.PlateauRepository.GetPlateau(plateauId);
+
+            Assert.Equal(roverId, rover.Id);
+            Assert.Equal(roverId, plateau.Rovers.First().Id);
+        }
+
+        [Fact]
+        [Trait("RoverRepositoryTests", "UpdateRover")]
+        public async Task Update_Plateau_Should_Work_Correctly()
+        {
+            var plateauId = Guid.NewGuid();
+            await _fixture.PlateauRepository.SavePlateau(new Plateau(new Size(5, 5), "PlateauX", plateauId));
+            var plateau = _fixture.PlateauRepository.GetPlateau(plateauId);
+
+            plateau.AddRover(new RoverX(Direction.East, new Point(1, 1), Guid.NewGuid()));
+            plateau.AddRover(new RoverX(Direction.East, new Point(2, 1), Guid.NewGuid()));
+            plateau.AddRover(new RoverX(Direction.East, new Point(3, 1), Guid.NewGuid()));
+
+           await _fixture.PlateauRepository.UpdatePlateau(plateau);
+
+           plateau = _fixture.PlateauRepository.GetPlateau(plateauId);
+
+           plateau.Rovers.Count.Should().Be(3);
         }
 
 
